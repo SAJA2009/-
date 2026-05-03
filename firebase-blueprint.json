@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user profile and role information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "teacher"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "role", "createdAt"]
+    },
+    "QuizAttempt": {
+      "title": "Quiz Attempt",
+      "description": "Stores a record of a quiz attempt.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subject": { "type": "string" },
+        "semester": { "type": "string" },
+        "grade": { "type": "string" },
+        "score": { "type": "integer" },
+        "totalQuestions": { "type": "integer" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subject", "semester", "grade", "score", "totalQuestions", "timestamp"]
+    },
+    "ProblemAttempt": {
+      "title": "Problem Attempt",
+      "description": "Stores a record of a problem-solving attempt.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subject": { "type": "string" },
+        "semester": { "type": "string" },
+        "grade": { "type": "string" },
+        "query": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "isSolved": { "type": "boolean" }
+      },
+      "required": ["userId", "subject", "semester", "grade", "query", "timestamp", "isSolved"]
+    },
+    "AreaOfDifficulty": {
+      "title": "Area of Difficulty",
+      "description": "Stores computed or reported areas of difficulty for a student.",
+      "type": "object",
+      "properties": {
+        "subject": { "type": "string" },
+        "topic": { "type": "string" },
+        "level": { "type": "number" },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["subject", "topic", "level", "lastUpdated"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Users profile collection."
+    },
+    "/users/{userId}/quiz_attempts/{attemptId}": {
+      "schema": "QuizAttempt",
+      "description": "Student quiz attempts."
+    },
+    "/users/{userId}/problem_attempts/{attemptId}": {
+      "schema": "ProblemAttempt",
+      "description": "Student problem-solving attempts."
+    },
+    "/users/{userId}/areas_of_difficulty/{areaId}": {
+      "schema": "AreaOfDifficulty",
+      "description": "Specific areas where the student is struggling."
+    }
+  }
+}

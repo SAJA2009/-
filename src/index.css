@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans Arabic", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #1E3A8A; /* Dark Blue (Navy) */
+  --color-secondary: #0F172A; /* Deeper Blue */
+  --color-accent: #60A5FA; /* Light Blue (Sky) */
+  --color-beige: #F5F5DC; /* Classical Beige */
+}
+
+@layer base {
+  body {
+    @apply bg-[#FDF9F0] text-slate-900 font-sans; /* Soft Beige Background */
+    direction: rtl;
+  }
+}
+
